@@ -1,0 +1,28 @@
+﻿@model PersonalManager.Models.Doa
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2 style="padding-bottom: 20px">@Model.Title</h2>
+
+
+@if (Model.DoaTexts.Count == 0)
+{
+    <span class="alert alert-danger">There is no text here. Please add text.<a href="/DoaText/AddText/@Model.Id">Add Text</a></span>
+}
+
+@foreach (var doa in Model.DoaTexts)
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5> @doa.Arabic </h5>
+            </div>
+            <div class="panel-body">
+                <h5>@doa.MalayTranslation</h5>
+            </div>
+        </div>
+    </div>
+}
+
+    <a href="/DoaText/AddText/@Model.Id"><button class="btn btn-default">Edit Translation</button></a>

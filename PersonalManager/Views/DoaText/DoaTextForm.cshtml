@@ -1,0 +1,157 @@
+﻿@model PersonalManager.ViewModel.DeleteDoaTextFormViewModel
+@{
+    ViewBag.Title = Model.doaTextFormViewModel.DoaTitle;
+}
+
+<h2>@Model.doaTextFormViewModel.DoaTitle</h2>
+<p class="alert alert-info">All fields are <strong>required</strong>.</p>
+@using (Html.BeginForm("AddText", "DoaText"))
+{
+    @Html.HiddenFor(m => m.doaTextFormViewModel.DoaId)
+    @Html.AntiForgeryToken()
+    for (var i = 0; i < Model.doaTextFormViewModel.DoaTexts.Count; i++)
+    {
+        @Html.HiddenFor(m => m.doaTextFormViewModel.DoaTexts[i].TempId)
+        @Html.HiddenFor(m => m.doaTextFormViewModel.DoaTexts[i].Id)
+
+
+        <div class="row">
+            <div class="col-md-1">
+                @(i + 1)
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.doaTextFormViewModel.DoaTexts[i].Arabic)
+                    @Html.TextAreaFor(m => m.doaTextFormViewModel.DoaTexts[i].Arabic, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.doaTextFormViewModel.DoaTexts[i].MalayTranslation)
+                    @Html.TextAreaFor(m => m.doaTextFormViewModel.DoaTexts[i].MalayTranslation, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-1">
+
+                @*<a href="@Url.Action("RemoveLine", "DoaText", new PersonalManager.ViewModel.DeleteDoaTextFormViewModel { doaTextFormViewModel = Model.DoaTexts, textTempId = Model.DoaTexts[i].TempId })">
+                        Remove
+                    </a>*@
+                @*<button type="button" class="btn btn-danger remove">Remove</button>*@
+                <input type="submit" name="answer" value="Remove @Model.doaTextFormViewModel.DoaTexts[i].TempId" class="btn btn-success" />
+
+            </div>
+        </div>
+    }
+    <input type="submit" name="answer" value="Submit" class="btn btn-success" />
+    <input type="submit" name="answer" value="Add New Line" class="btn btn-danger" />
+}
+
+
+
+
+@section scripts
+    {
+    <script>
+
+        //function newDoaLine(obj) {
+        //    $("#appendHere").append(`
+        //            <div class="row">
+        //                <div class="col-md-1">
+        //                    <div class="form-group">
+        //                        <label for="LineNumber">LineNumber</label>
+        //                        <input  class="form-control" id="LineNumber_${obj.LineNumber}"
+        //                            readonly="readonly" type="text" value="${obj.LineNumber}">
+        //                    </div>
+        //                </div>
+        //                <div class="col-md-5">
+        //                    <div class="form-group">
+        //                        <label for="MalayTranslation">MalayTranslation</label>
+        //                        <textarea class="form-control" cols="20" id="MalayTranslation_${obj.LineNumber}" rows="2">${obj.MalayTranslation}</textarea>
+        //                    </div>
+        //                </div>
+        //                <div class="col-md-5">
+        //                    <div class="form-group">
+        //                        <label for="Arabic">Arabic</label>
+        //                        <textarea class="form-control" cols="20" id="Arabic_${obj.LineNumber}" rows="2">${obj.Arabic}</textarea>
+        //                    </div>
+        //                </div>
+        //                <div class="col-md-1">
+        //                    <button class="btn btn-danger" id="remove">Remove</button>
+        //                </div>
+        //            </div>
+        //            `);
+        //}
+        //console.log(doaText)
+
+
+
+        $(document).ready(function () {
+            console.log('test');
+
+            $(".remove").click(function (e) {
+                console.log(e);
+                e.preventDefault();
+                $.post("/DoaText/RemoveLine", function () {
+
+                })
+
+                $.post("/DoaText/RemoveLine")
+                    .done(function () {
+                        $(".js-notifications-count")
+                            .text("")
+                            .addClass("hide");
+                    });
+            });
+
+
+            //for (var i = 0; i < doaText.length; i++) {
+            //    newDoaLine(doaText[i]);
+            //}
+
+
+            //$(".add-new-line").click(function (e) {
+            //    e.preventDefault();
+            //    console.log(doaText.length)
+            //    doaText.push({
+            //        LineNumber: doaText.length + 1,
+            //        Arabic: '',
+            //        MalayTranslation: ''
+            //    })
+            //    newDoaLine(doaText[doaText.length - 1]);
+            //})
+
+
+
+
+
+
+            //var wrapper2 = $(".wrapper");
+            //$(wrapper2).on("click", "#remove", function (e) { //user click on remove text
+            //    e.preventDefault(); $(this).closest('.row').remove(); numberOfLine--;
+            //})
+
+
+
+
+            //var max_fields = 10; //maximum input boxes allowed
+            //var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            //var add_button = $(".add_field_button"); //Add button ID
+
+            //var x = 1; //initlal text box count
+            //$(add_button).click(function (e) { //on add input button click
+            //    e.preventDefault();
+            //    if (x < max_fields) { //max input box allowed
+            //        x++; //text box increment
+            //        $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            //    }
+            //});
+
+            //$(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            //    e.preventDefault(); $(this).parent('div').remove(); x--;
+            //})
+        })
+
+
+    </script>
+
+}

@@ -208,16 +208,47 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DoaController.cs" />
+    <Compile Include="Controllers\DoaTextController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810031544455_AddDoaModel.cs" />
+    <Compile Include="Migrations\201810031544455_AddDoaModel.Designer.cs">
+      <DependentUpon>201810031544455_AddDoaModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810041249507_AddDoaText.cs" />
+    <Compile Include="Migrations\201810041249507_AddDoaText.Designer.cs">
+      <DependentUpon>201810041249507_AddDoaText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810041252017_AddDoaTextReal.cs" />
+    <Compile Include="Migrations\201810041252017_AddDoaTextReal.Designer.cs">
+      <DependentUpon>201810041252017_AddDoaTextReal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810041655102_DbChanges.cs" />
+    <Compile Include="Migrations\201810041655102_DbChanges.Designer.cs">
+      <DependentUpon>201810041655102_DbChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810191358163_RemoveLineNumber.cs" />
+    <Compile Include="Migrations\201810191358163_RemoveLineNumber.Designer.cs">
+      <DependentUpon>201810191358163_RemoveLineNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Doa.cs" />
+    <Compile Include="Models\DoaText.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\DeleteDoaTextFormViewModel.cs" />
+    <Compile Include="ViewModel\DoaTextFormViewModel.cs" />
+    <Compile Include="ViewModel\DoaTextViewModel.cs" />
+    <Compile Include="ViewModel\DoaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -278,6 +309,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Doa\DoaForm.cshtml" />
+    <Content Include="Views\DoaText\ViewText.cshtml" />
+    <Content Include="Views\DoaText\DoaTextForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,6 +329,23 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201810031544455_AddDoaModel.resx">
+      <DependentUpon>201810031544455_AddDoaModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810041249507_AddDoaText.resx">
+      <DependentUpon>201810041249507_AddDoaText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810041252017_AddDoaTextReal.resx">
+      <DependentUpon>201810041252017_AddDoaTextReal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810041655102_DbChanges.resx">
+      <DependentUpon>201810041655102_DbChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191358163_RemoveLineNumber.resx">
+      <DependentUpon>201810191358163_RemoveLineNumber.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

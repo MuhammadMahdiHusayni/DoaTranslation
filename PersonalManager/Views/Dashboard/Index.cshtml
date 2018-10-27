@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PersonalManager.Models.Doa>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dashboard</h2>
+<div style="padding-bottom: 30px"></div>
+<div class="row" style="padding-bottom: 15px">
+    <div class="col-md-12">
+        <button class="btn btn-default"> @Html.ActionLink("Add New Doa", "CreateDoa", "Doa")  </button>
+    </div>
+</div>
+<div class="row">
+
+    @foreach (var doa in Model)
+    {
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>@doa.Title</h3>
+                    <span class="row">
+                        <a href="@Url.Action("UpdateDoa", "Doa", new { id = doa.Id })">
+                            Edit Title
+                        </a>
+                    </span>
+                    <span class="row">
+                        <a href="@Url.Action("ViewText", "DoaText", new { id = doa.Id })">
+                            View Text
+                        </a>
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
